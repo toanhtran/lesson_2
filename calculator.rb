@@ -6,6 +6,14 @@ def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
+def number?(input)
+  integer?(input) || float?(input)
+end
+
+def integer?(input)
+  /^\d+$/.match(input)
+end
+
 def valid_number?(num)
   num.to_i != 0
 end
@@ -35,11 +43,22 @@ prompt("Welcome to Calculator! Enter your name: ")
    end
  end
 
+name = ' '
+loop do
+  name = Kernel.gets.chomp
+  if name.empty?()
+    prompt("Make sure you enter a name.")
+  else
+    break
+  end
+end
 
 prompt("Hi #{name}!")
 loop do # main loop
     number1 = ' '
     loop do
+  number1 = ' '
+  loop do
     prompt("Please enter your first number.")
     number1 = Kernel.gets.chomp
 
@@ -69,9 +88,11 @@ loop do # main loop
     3) multiply
     4) divide
     MSG
+MSG
 
     prompt(operator_prompt)
 
+  prompt(operator_prompt)
   operator = ' '
   loop do
     operator = Kernel.gets.chomp
@@ -79,9 +100,12 @@ loop do # main loop
       break
     else
       prompt("Must choose 1, 2, 3, or 4")
+    end
   end
 end
 prompt("#{operation_to_message(operator)} the two numbers.....")
+
+  prompt("#{operation_to_message(operator)} the two numbers.....")
 
   result = case operator
               when '1'
@@ -92,6 +116,14 @@ prompt("#{operation_to_message(operator)} the two numbers.....")
                   number1.to_i * number2.to_i
                 when '4'
                   number1.to_f / number2.to_f
+  when '1'
+    number1.to_i + number2.to_i
+  when '2'
+    number1.to_i + number2.to_i
+  when '3'
+    number1.to_i * number2.to_i
+  when '4'
+    number1.to_f / number2.to_f
   end
 
   prompt("The result is #{result}")
